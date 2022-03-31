@@ -29,4 +29,4 @@ def erregistratu(request):
     return render_to_response('FilmenGunea/register.html', {'form':form})
 
 def menua(request):
-    return render_to_response('FilmenGunea/menua.html')
+    return render_to_response('FilmenGunea/froga.html')
