@@ -50,12 +50,24 @@
     <Compile Include="django_larranaga\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FilmenGunea\templates\FilmenGunea\bozkatu.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="FilmenGunea\templates\FilmenGunea\filmakIkusi.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="FilmenGunea\templates\FilmenGunea\froga.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="FilmenGunea\templates\FilmenGunea\index.html" />
     <Content Include="FilmenGunea\templates\FilmenGunea\index.css" />
     <Content Include="FilmenGunea\templates\FilmenGunea\menua.html">
       <SubType>Code</SubType>
     </Content>
     <Content Include="FilmenGunea\templates\FilmenGunea\register.html" />
+    <Content Include="FilmenGunea\templates\FilmenGunea\zaleak.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
