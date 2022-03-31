@@ -52,6 +52,7 @@
   <ItemGroup>
     <Content Include="FilmenGunea\templates\FilmenGunea\index.html" />
     <Content Include="FilmenGunea\templates\FilmenGunea\index.css" />
+    <Content Include="FilmenGunea\templates\FilmenGunea\register.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
