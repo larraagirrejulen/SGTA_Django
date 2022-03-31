@@ -10,3 +10,6 @@ def index(request):
 def erregistratu(request):
     form = RegisterForm()
     return render_to_response('FilmenGunea/index.html', {'form':form})
+
+def menua(request):
+    return render_to_response('FilmenGunea/menua.html')
