@@ -28,9 +28,9 @@ def login_request(request):
         true
 
 
-def erregistratu(request):
+def register(request):
     form = RegisterForm()
     return render_to_response('FilmenGunea/register.html', {'form':form})
 
-def menua(request):
+def main(request):
     return render_to_response('FilmenGunea/froga.html')

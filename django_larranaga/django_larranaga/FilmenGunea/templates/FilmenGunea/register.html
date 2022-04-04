@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+{% extends 'FilmenGunea/menua.html' %}
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-    <form method="post">
-        {{form}}
-        <button type="submit">Erregistratu</button>
-    </form>
-    <a href="/../">Login</a>
-</body>
-</html>
+{% block estekak %}
+    <li><a href="../login/">Login</a></li>
+    <li><a href="../register/">Register</a></li>
+{% endblock %}
+
+{% block content %}
+        <div class="post">
+            <h2>Register</h2>
+            <form method="post">
+              {{form}}
+              <button type="submit">Erregistratu</button>
+            </form>
+        </div>
+{% endblock %}
