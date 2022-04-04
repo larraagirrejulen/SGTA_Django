@@ -8,9 +8,11 @@
 {% block content %}
         <div class="post">
             <h2>Kontu berria erregistratu</h2>
-            <form method="post">
+            <form action="../register_request/" method="post">
+                {% csrf_token %}
               {{form}}
               <button type="submit">Erregistratu</button>
             </form>
+            {{emaitza}}
         </div>
 {% endblock %}
