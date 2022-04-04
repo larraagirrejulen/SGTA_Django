@@ -23,5 +23,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('erregistratu/', views.erregistratu, name='index'),
-    path('menua/', views.menua, name='index')
+    path('menua/', views.menua, name='index'),
+    path('login/', views.login, name='index')
 ]

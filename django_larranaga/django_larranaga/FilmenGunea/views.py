@@ -5,10 +5,13 @@ from django.contrib.auth import authenticate, login as auth_login
 
 
 def index(request):
-    form = LoginForm()
-    return render_to_response('FilmenGunea/index.html', {'form':form})
+    return render_to_response('FilmenGunea/index.html')
 
 def login(request):
+    form = LoginForm()
+    return render_to_response('FilmenGunea/login.html', {'form':form})
+
+def login_request(request):
     erab = request.POST['username']
     pasa = request.POST['password']
     user = authenticate(username=erab, password=pasa)
@@ -19,9 +22,10 @@ def login(request):
             return HttpResponseRedirect('menus/')
         else:
             # Errore-mezua bueltatu: 'kontua desgaituta'.
-            
+            true
     else:
         # Errore-mezua bueltatu: 'login desegokia'.
+        true
 
 
 def erregistratu(request):

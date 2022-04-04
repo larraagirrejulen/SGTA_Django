@@ -61,6 +61,9 @@
     </Content>
     <Content Include="FilmenGunea\templates\FilmenGunea\index.html" />
     <Content Include="FilmenGunea\templates\FilmenGunea\index.css" />
+    <Content Include="FilmenGunea\templates\FilmenGunea\login.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="FilmenGunea\templates\FilmenGunea\menua.html">
       <SubType>Code</SubType>
     </Content>
