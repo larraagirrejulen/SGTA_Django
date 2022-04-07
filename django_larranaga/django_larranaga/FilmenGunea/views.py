@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, redirect
 from django.http import HttpResponse
-from .forms import LoginForm, RegisterForm, NewUserForm
+from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -30,15 +30,18 @@ def login_request(request):
 
 def register(request):
     if request.method == "POST":
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if password1 == password2:
+            user = User.objects.create_user(username, password1, password2)
+            user.save()
             login(request, user)
             messages.success(request, "Zuzen erregistratu zara.")
-            return redirect('FilmenGunea/login.html')
+            return redirect('FilmenGunea/main.html')
         messages.error(request, "Ezin izan da erregistratu. Datuak ez dira baliozkoak.")
-    form = NewUserForm()
-    return render_to_response('FilmenGunea/register.html', {"form":form})
+    form = RegisterForm()
+    return render_to_response('FilmenGunea/register.html', {'form':form})
 
 def main(request):
     return render_to_response('FilmenGunea/froga.html')
