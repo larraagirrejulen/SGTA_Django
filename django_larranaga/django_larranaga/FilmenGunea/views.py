@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response, redirect
 from django.http import HttpResponse
 from .forms import LoginForm, RegisterForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as login_auth
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -9,24 +9,19 @@ def index(request):
     return render_to_response('FilmenGunea/index.html')
 
 def login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        if authenticate(username, password) is not None:
+            if user.is_active:
+                login_auth(request, user)
+                return HttpResponseRedirect('menus/')
+            else:
+                messages.error(request, "Ezin izan da kontuan sartu. Kontua desgaituta dago.")
+        else:
+            messages.error(request, "Ezin izan da kontuan sartu. Erabiltzaile izen edo pasahitz okerra.")
     form = LoginForm()
     return render_to_response('FilmenGunea/login.html', {'form':form})
-
-def login_request(request):
-    erab = request.POST['username']
-    pasa = request.POST['password']
-    user = authenticate(username=erab, password=pasa)
-    if user is not None:
-        if user.is_active:
-            auth_login(request, user)
-            # Berbideratu login ondorengo orri batera.
-            return HttpResponseRedirect('menus/')
-        else:
-            # Errore-mezua bueltatu: 'kontua desgaituta'.
-            return HttpResponse("<h1>Errorea: kontua desgaituta dago</h1>")
-    else:
-        # Errore-mezua bueltatu: 'login desegokia'.
-        return HttpResponse("<h1>Errorea: erabiltzaile edo pasahitz okerra</h1>");
 
 def register(request):
     if request.method == "POST":
