@@ -6,13 +6,14 @@
 {% endblock %}
 
 {% block content %}
-        <div class="post">
-            <h2>Kontu berria erregistratu</h2>
-            <form action="../register_request/" method="post">
-                {% csrf_token %}
-              {{form}}
-              <button type="submit">Erregistratu</button>
-            </form>
-            {{emaitza}}
-        </div>
+    
+    <div class="register_form">
+        <h1>Erregistratu</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ register_form }}
+            <button class="register_btn" type="submit">Erregistratu</button>
+        </form>
+    </div>
+
 {% endblock %}
