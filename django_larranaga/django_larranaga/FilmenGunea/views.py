@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, RegisterForm
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, logout, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -14,6 +15,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
+
                 return redirect('../main')
             else:
                 messages.error(request, "Ezin izan da kontuan sartu. Kontua desgaituta dago.")
@@ -30,12 +32,18 @@ def register(request):
         if password1 == password2:
             user = User.objects.create_user(username=username, password=password1)
             user.save()
+            messages.info(request, "Zuzen erregistratu zara.")
             auth_login(request, user)
-            messages.success(request, "Zuzen erregistratu zara.")
             return redirect('../main')
         messages.error(request, "Ezin izan da erregistratu. Datuak ez dira baliozkoak.")
     form = RegisterForm()
     return render(request, 'FilmenGunea/register.html', {'form':form})
 
+def logout_eskaera(request):
+    logout(request)
+    messages.info(request, "Kontutik atera zara.")
+    return redirect('../')
+
+@login_required(login_url='../')
 def main(request):
     return render(request, 'FilmenGunea/froga.html')
