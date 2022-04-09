@@ -12,6 +12,7 @@ def login(request):
     if request.method == "POST":
         if authenticate(request) is not None:
             if user.is_active:
+                messages.error(request, "a")
                 auth_login(request, user)
                 return HttpResponseRedirect('menus/')
             else:

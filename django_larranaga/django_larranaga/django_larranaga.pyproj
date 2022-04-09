@@ -67,6 +67,7 @@
     <Content Include="FilmenGunea\templates\FilmenGunea\menua.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="FilmenGunea\templates\FilmenGunea\messages.html" />
     <Content Include="FilmenGunea\templates\FilmenGunea\register.html" />
     <Content Include="FilmenGunea\templates\FilmenGunea\zaleak.html">
       <SubType>Code</SubType>
