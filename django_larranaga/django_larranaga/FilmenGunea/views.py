@@ -5,6 +5,7 @@ from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, logout, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     return render(request, 'FilmenGunea/index.html')
@@ -48,7 +49,18 @@ def main(request):
 
 @login_required(login_url='../')
 def filmak(request):
-    return render(request, 'FilmenGunea/filmak.html')
+    film_list = Filma.objects.all()
+    paginator = Paginator(film_list, 5) # Show 5 contacts per page
+    page = request.GET.get('page')
+    try:
+        filmak = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        filmak = paginator.page(paginator.num_pages)
+    return render(request, 'FilmenGunea/filmak.html', {"filmak": filmak})
 
 @login_required(login_url='../')
 def bozkatu(request):

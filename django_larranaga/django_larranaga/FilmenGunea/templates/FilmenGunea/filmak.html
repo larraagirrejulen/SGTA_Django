@@ -2,7 +2,45 @@
 {% extends 'FilmenGunea/menua.html' %}
 
 {% block content %}
-        <h3>Menua</h3>
-        {% include 'FilmenGunea/messages.html' %}
-        <a href="../logout/">ATERA SAIOTIK</a>
+    <h3>Menua</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Izenburua</th>
+                <th>Zuzendaria</th>
+                <th>Urtea</th>
+                <th>Generoa</th>
+                <th>Sinopsia</th>
+                <th>Bozkak</th>
+            </tr>
+        </thead>
+    <tbody>
+        {% for user in filmak %}
+        <tr>
+            <td>{{ user.izenburua }}</td>
+            <td>{{ user.zuzendaria }}</td>
+            <td>{{ user.urtea }}</td>
+            <td>{{ user.generoa }}</td>
+            <td>{{ user.sinopsia }}</td>
+            <td>{{ user.bozkak }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if filmak.has_previous %}
+            <a href="?page={{ filmak.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ filmak.number }} of {{ filmak.paginator.num_pages }}.
+            </span>
+            {% if filmak.has_next %}
+            <a href="?page={{ filmak.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
+    <a href="../logout/">ATERA SAIOTIK</a>
 {% endblock %}
