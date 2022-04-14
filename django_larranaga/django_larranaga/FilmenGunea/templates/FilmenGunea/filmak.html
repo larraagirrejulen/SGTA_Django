@@ -15,14 +15,14 @@
             </tr>
         </thead>
     <tbody>
-        {% for user in filmak %}
+        {% for film in filmak %}
         <tr>
-            <td>{{ user.izenburua }}</td>
-            <td>{{ user.zuzendaria }}</td>
-            <td>{{ user.urtea }}</td>
-            <td>{{ user.generoa }}</td>
-            <td>{{ user.sinopsia }}</td>
-            <td>{{ user.bozkak }}</td>
+            <td>{{ film.izenburua }}</td>
+            <td>{{ film.zuzendaria }}</td>
+            <td>{{ film.urtea }}</td>
+            <td>{{ film.generoa }}</td>
+            <td>{{ film.sinopsia }}</td>
+            <td>{{ film.bozkak }}</td>
         </tr>
         {% endfor %}
     </tbody>
