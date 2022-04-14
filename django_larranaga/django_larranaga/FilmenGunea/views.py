@@ -35,7 +35,6 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
-
                 return redirect('../main')
             else:
                 messages.error(request, "Ezin izan da kontuan sartu. Kontua desgaituta dago.")
@@ -52,8 +51,7 @@ def register(request):
         if password1 == password2:
             user = User.objects.create_user(username=username, password=password1)
             user.save()
-            auth_login(request, user)
-            return redirect('../main')
+            return redirect('../login')
         messages.error(request, "Ezin izan da erregistratu. Datuak ez dira baliozkoak.")
     form = RegisterForm()
     return render(request, 'FilmenGunea/register.html', {'form':form})

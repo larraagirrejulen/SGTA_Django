@@ -15,7 +15,6 @@
         #edukia h3 {
             color: forestgreen;
         }
-
     </style>
 </head>
 <body>
@@ -23,13 +22,16 @@
     <div id="sidebar">
        
         <h3>Aukerak</h3>
-        <ul>
+        
             {% block estekak %}
-            <li><a href="../filmak/">Filmak ikusi</a></li>
-            <li><a href="../bozkatu/">Bozkatu</a></li>
-            <li><a href="../zaleak/">Zaleak</a></li>
+            <ul>
+                <li><a href="../filmak/">Filmak ikusi</a></li>
+                <li><a href="../bozkatu/">Bozkatu</a></li>
+                <li><a href="../zaleak/">Zaleak</a></li>
+            </ul>
+            <a href="../logout/">ATERA SAIOTIK</a>
             {% endblock %}
-        </ul>
+       
        
     </div>
     
@@ -37,5 +39,6 @@
         {% block content %}
         {% endblock %}
     </div>
+
 </body>
 </html>
