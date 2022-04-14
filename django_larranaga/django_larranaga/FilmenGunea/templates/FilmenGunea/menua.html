@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="index.css" />
     <title>Identify</title>
+    <style>
+        .title {
+            color: forestgreen;
+        }
+        #sidebar, #edukia {
+            display: inline-block;
+        }
+        #edukia {
+            margin-left: 10em;
+        }
+        #edukia h3 {
+            color: forestgreen;
+        }
+
+    </style>
 </head>
 <body>
-    <h2>Filmen gunea</h2>
+    <h1 id="title" class="title">Filmen gunea</h1>
     <div id="sidebar">
        
+        <h3>Aukerak</h3>
         <ul>
             {% block estekak %}
+            <li><a href="../filmak/">Filmak ikusi</a></li>
+            <li><a href="../bozkatu/">Bozkatu</a></li>
+            <li><a href="../zaleak/">Zaleak</a></li>
             {% endblock %}
         </ul>
        

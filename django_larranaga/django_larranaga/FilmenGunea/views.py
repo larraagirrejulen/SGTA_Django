@@ -32,7 +32,6 @@ def register(request):
         if password1 == password2:
             user = User.objects.create_user(username=username, password=password1)
             user.save()
-            messages.info(request, "Zuzen erregistratu zara.")
             auth_login(request, user)
             return redirect('../main')
         messages.error(request, "Ezin izan da erregistratu. Datuak ez dira baliozkoak.")
@@ -41,9 +40,20 @@ def register(request):
 
 def logout_eskaera(request):
     logout(request)
-    messages.info(request, "Kontutik atera zara.")
     return redirect('../')
 
 @login_required(login_url='../')
 def main(request):
-    return render(request, 'FilmenGunea/froga.html')
+    return render(request, 'FilmenGunea/main.html', {'user':request.user})
+
+@login_required(login_url='../')
+def filmak(request):
+    return render(request, 'FilmenGunea/filmak.html')
+
+@login_required(login_url='../')
+def bozkatu(request):
+    return render(request, 'FilmenGunea/bozkatu.html')
+
+@login_required(login_url='../')
+def zaleak(request):
+    return render(request, 'FilmenGunea/zaleak.html')
