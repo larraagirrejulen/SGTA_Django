@@ -1,6 +1,62 @@
+<head>
+    <style>
+        #film_taula {
+            border-collapse: collapse;
+        }
+        #film_taula td, #film_taula th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #film_taula tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        #film_taula tr:hover {
+            background-color: #ddd;
+        }
+        #film_taula th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+
+
 {% extends 'FilmenGunea/menua.html' %}
 
 {% block content %}
         <h3>Zaleak</h3>
         {% include 'FilmenGunea/messages.html' %}
+
+    
+    <form method="POST">
+        <div class="ikusi_boz">
+            <select name="dropFilm">
+                {% for film in filmak %}
+                    <option value= "{{film.izenburua}}" SELECTED>{{film.izenburua}}</option>"
+                {% endfor %}
+            </select>
+
+            {% csrf_token %}
+            <button class="bozkatu_filma" type="submit">Bozkatu</button>
+        </div>
+    </form>
+
+    <table id="film_taula">
+        <thead>
+            <tr>
+                <th>Erabiltzaile izena</th>
+            </tr>
+        </thead>
+    <tbody>
+        {% for boz in bozkak %}
+        <tr>
+            <td>{{ boz.erabiltzailea_id }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
 {% endblock %}

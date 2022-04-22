@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, logout, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from FilmenGunea.models import Filma
+from FilmenGunea.models import Filma, Bozkatzailea
+
 
 def index(request):
 
@@ -80,10 +81,39 @@ def filmak(request):
         filmak = paginator.page(paginator.num_pages)
     return render(request, 'FilmenGunea/filmak.html', {"filmak": filmak})
 
+
 @login_required(login_url='../')
 def bozkatu(request):
-    return render(request, 'FilmenGunea/bozkatu.html')
+    if request.method == "POST":
+        filma = request.POST.getlist('dropFilm')
+
+        #b1 = Bozkatzailea(erabiltzailea_id=request.user, gogokofilmak=filma)
+        #b1.save()
+
+
+    film_list = Filma.objects.all()
+
+    return render(request, 'FilmenGunea/bozkatu.html', {"filmak": film_list})
+
+
 
 @login_required(login_url='../')
 def zaleak(request):
-    return render(request, 'FilmenGunea/zaleak.html')
+    if request.method == "POST":
+        try:
+            filmIzena = request.POST.get('dropFilm')
+            
+        except:
+            return redirect('/')
+
+        filma = Filma.objects.get(izenburua=filmIzena)
+
+        usr = filma.bozkatzailea_set.all()
+
+        film_list = Filma.objects.all()
+        return render(request, 'FilmenGunea/zaleak.html', {"bozkak": usr,"filmak": film_list})
+    else:
+
+        #bozk_list = Bozkatzailea.objects.all()
+        film_list = Filma.objects.all()
+        return render(request, 'FilmenGunea/zaleak.html', {"filmak": film_list})

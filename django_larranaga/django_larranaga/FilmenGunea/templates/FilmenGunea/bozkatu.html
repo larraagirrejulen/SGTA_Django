@@ -1,6 +1,20 @@
 {% extends 'FilmenGunea/menua.html' %}
 
 {% block content %}
-        <h3>Bozkatu zure gogoko pelikula</h3>
-        {% include 'FilmenGunea/messages.html' %}
+    <h3>Bozkatu zure gogoko pelikula</h3>
+
+
+<form method="POST">
+    <div class="bozkatu_filma">
+        <select name="dropFilm">
+            {% for film in filmak %}
+                <option name="filmak" value= "{{film.izenburua}}" SELECTED>{{film.izenburua}}</option>"
+            {% endfor %}
+        </select>
+
+        {% csrf_token %}
+        <button class="bozkatu_filma" type="submit">Bozkatu</button>
+    </div>
+</form>
+
 {% endblock %}
