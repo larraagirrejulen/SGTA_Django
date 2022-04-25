@@ -84,16 +84,28 @@ def filmak(request):
 
 @login_required(login_url='../')
 def bozkatu(request):
-    if request.method == "POST":
-        filma = request.POST.getlist('dropFilm')
-
-        #b1 = Bozkatzailea(erabiltzailea_id=request.user, gogokofilmak=filma)
-        #b1.save()
-
 
     film_list = Filma.objects.all()
+    msg=""
+    if request.method == "POST":
+        filmaIzena = request.POST.get('dropFilm')
+        filma=Filma.objects.get(izenburua=filmaIzena)
+        er=request.user
 
-    return render(request, 'FilmenGunea/bozkatu.html', {"filmak": film_list})
+        bozkaDenak = Bozkatzailea.objects.all()
+
+        for boz in bozkaDenak:
+            if Bozkatzailea.objects.filter(gogokofilmak=filma,erabiltzailea_id=er.id).exists():
+                msg="Dagoeneko bozkatu duzu pelikula hau"
+                return render(request, 'FilmenGunea/bozkatu.html', {"filmak": film_list,"mezua":msg})
+
+        b1 = Bozkatzailea(erabiltzailea_id=er)
+        b1.save()
+        b1.gogokofilmak.add(filma)
+        msg="Ondo bozkatu da"
+
+
+    return render(request, 'FilmenGunea/bozkatu.html', {"filmak": film_list,"mezua":msg})
 
 
 
