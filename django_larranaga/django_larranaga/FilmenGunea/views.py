@@ -60,7 +60,6 @@ def filmak(request):
         filmak = paginator.page(paginator.num_pages)
     return render(request, 'FilmenGunea/filmak.html', {"filmak": filmak})
 
-
 @login_required(login_url='../')
 def bozkatu(request):
 
