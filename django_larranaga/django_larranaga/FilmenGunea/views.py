@@ -80,6 +80,8 @@ def bozkatu(request):
         b1 = Bozkatzailea(erabiltzailea_id=er)
         b1.save()
         b1.gogokofilmak.add(filma)
+        filma.bozkak += 1
+        filma.save()
 
         messages.success(request, "Ondo bozkatu da")
 
